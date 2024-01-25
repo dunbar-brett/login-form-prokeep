@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaLock, FaUser } from 'react-icons/fa';
 import './LoginForm.css';
 
+const reqresUrl = 'https://reqres.in/api/login';
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 const validateEmail = (email) => {
@@ -14,6 +15,8 @@ const LoginForm = () => {
 
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
+    const [loginError, setLoginError] = useState('');
+    const [loginSuccess, setLoginSuccess] = useState(false);
 
     const handleEmailChange = (e) => {
         let emailVal = e.target.value;
@@ -54,20 +57,54 @@ const LoginForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(`Email: ${email} Password: ${password}`);
         if (email.length === 0) {
             setEmailError('Please enter your email')
+            return
         }
 
         if (password.length === 0) {
             setPasswordError('Please enter a password')
+            return
         }
 
         if (emailError || passwordError) {
             return
         }
-        
+
+        let payload = {
+            email: email,
+            password: password
+        }
+
         // submit to api
+        fetch(reqresUrl, {
+            method: 'POST',
+            body: JSON.stringify(payload),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json()) // Convert the response data to a JSON object
+        .then(data => {
+            // Handle the JSON data returned from the server
+
+            // If the server returns an error message
+            if (data.error) {
+                console.log('Error:', data.error);
+                setLoginError(data.error);
+            }
+
+            // If the server returns a success message
+            else {
+                console.log('Success:', data);
+                setLoginSuccess(data.token)
+            }
+        })
+        .catch(error => {
+            // Handle the error
+            console.log('Error:', error);
+            setLoginError(error);
+        });
     };
 
     return (
