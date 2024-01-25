@@ -76,6 +76,9 @@ const LoginForm = () => {
             password: password
         }
 
+        setLoginError('');
+        setLoginSuccess('');
+
         // submit to api
         fetch(reqresUrl, {
             method: 'POST',
@@ -108,12 +111,13 @@ const LoginForm = () => {
     };
 
     return (
-        <div className='wrapper'>
+        <div className='wrapper' data-testid='login-form'>
             <form onSubmit={handleSubmit}>
-                <h1 data-testid='header'>Login</h1>
+                <h1>Login</h1>
                 <div className='input-box'>
                     <input type='text'
                         placeholder='Email'
+                        data-testid='email-input'
                         onChange={handleEmailChange} />
                     <FaUser className='icon' />
                 </div>
@@ -123,6 +127,7 @@ const LoginForm = () => {
                 <div className='input-box'>
                     <input type='password'
                         placeholder='Password'
+                        data-testid='password-input'
                         onChange={handlePasswordChange} />
                     <FaLock className='icon' />
                 </div>
@@ -138,12 +143,16 @@ const LoginForm = () => {
                     <a href='#' onClick={handleForgotPasswordClick}>Forgot password?</a>
                 </div>
 
-                <button type='submit'>Login</button>
+                <button type='submit' data-testid='login-button'>Login</button>
 
                 <div className='register-link'>
                     <p>Don't have an account? <a href='#' onClick={handleRegisterClick}>Register</a></p>
                 </div>
             </form>
+            <div className='response-message'>
+                {loginSuccess && <p className='success'>Login Successful -- Token: {loginSuccess}</p>}
+                {loginError && <p className='error'>Login Error: {loginError}</p>}
+            </div>
         </div>
     );
 };

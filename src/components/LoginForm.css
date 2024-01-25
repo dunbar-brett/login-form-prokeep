@@ -105,3 +105,18 @@
     color: red;
     font-size: 14px;
 }
+
+.response-message {
+    margin-top: 4px;
+    min-height: 21px;
+}
+
+.response-message .success {
+    color: springgreen;
+    font-size: 14px;
+}
+
+.response-message .error {
+    color: red;
+    font-size: 14px;
+}

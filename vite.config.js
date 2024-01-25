@@ -8,5 +8,8 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./src/tests/setup.js'],
+    coverage: {
+      reporter: ['text', 'html'],
+    }
   }
 })
