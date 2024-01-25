@@ -23,6 +23,8 @@ const LoginForm = () => {
         let emailVal = e.target.value;
         setEmail(emailVal);
         setEmailError('')
+        setLoginError('');
+        setLoginSuccess('');
 
         if (emailVal && !validateEmail(emailVal)) {
             setEmailError('Please enter a valid email')
@@ -34,6 +36,8 @@ const LoginForm = () => {
         let passwordVal = e.target.value;
         setPassword(passwordVal);
         setPasswordError('')
+        setLoginError('');
+        setLoginSuccess('');
         
 
         if (passwordVal && passwordVal.length < 7) {
@@ -148,7 +152,7 @@ const LoginForm = () => {
                 </div>
             </form>
             <div className='response-message'>
-                {loginSuccess && <p className='success'>Login Successful -- Token: {loginSuccess}</p>}
+                {loginSuccess && <p className='success'>Login Successful</p>}
                 {loginError && <p className='error'>Login Error: {loginError}</p>}
                 {loading && <p className='loading'>Loading...</p>}
             </div>

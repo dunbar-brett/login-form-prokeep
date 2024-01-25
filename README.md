@@ -26,6 +26,14 @@ This is a simple Login Form built with Vite and React for a tech assessment with
 3. Open `coverage/index.html` to see a UI of the test results and the file coverage.
 
 
+## Valid Emails for Login
+1. george.bluth@reqres.in
+2. janet.weaver@reqres.in
+3. emma.wong@reqres.in
+
+More can be found on the [Reqres website](https://reqres.in/)
+
+
 ## Scope for the assessment
 1.  The  login  form  should  have  an  email  input  and  a  password  input.  
 2.  The  login  form  should  validate  that  the  email  is  a  valid  email  input  and  the  password  field  has  at  least  one  character  before  you  process  the  submit  action.  

@@ -108,15 +108,14 @@
 
 .response-message {
     margin-top: 4px;
-    min-height: 21px;
+    min-height: 25px;
 }
 
+.response-message p {
+    font-size: 16px;
+    font-weight: 600;
+
+}
 .response-message .success {
     color: springgreen;
-    font-size: 14px;
-}
-
-.response-message .error {
-    color: red;
-    font-size: 14px;
 }
