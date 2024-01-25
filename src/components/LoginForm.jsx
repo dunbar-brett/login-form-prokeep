@@ -3,12 +3,12 @@ import { FaLock, FaUser } from "react-icons/fa";
 import './LoginForm.css';
 
 const LoginForm = () => {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleUsernameChange = (e) => {
+    const handleEmailChange = (e) => {
         // handle validation
-        setUsername(e.target.value);
+        setEmail(e.target.value);
     };
 
     const handlePasswordChange = (e) => {
@@ -32,7 +32,7 @@ const LoginForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(`Username: ${username} Password: ${password}`);
+        console.log(`Email: ${email} Password: ${password}`);
         // add logic
     };
 
@@ -42,8 +42,8 @@ const LoginForm = () => {
                 <h1>Login</h1>
                 <div className='input-box'>
                     <input type="text"
-                        placeholder='Username'
-                        onChange={handleUsernameChange}
+                        placeholder='Email'
+                        onChange={handleEmailChange}
                         required/>
                     <FaUser className='icon' />
                 </div>
