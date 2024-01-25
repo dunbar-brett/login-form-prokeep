@@ -5,21 +5,23 @@ This is a simple Login Form built with Vite and React for a tech assessment with
 
 ## Installation Method
 1. Clone the repo
-`git clone https://github.com/dunbar-brett/login-form-prokeep.git`
 
+    `git clone https://github.com/dunbar-brett/login-form-prokeep.git`
 2. Cd into the directory
-`cd login-form-prokeep`
 
+    `cd login-form-prokeep`
 3. Install node modules
-`npm i`
 
+    `npm i`
 4. Start the development server
-`npm run dev`
+
+    `npm run dev`
 
 
 ## Unit Tests
 1. In the project directory run:
-`npm test`
+
+    `npm test`
 2. Notice that after running the tests a new `coverage` directory was created. 
 3. Open `coverage/index.html` to see a UI of the test results and the file coverage.
 
