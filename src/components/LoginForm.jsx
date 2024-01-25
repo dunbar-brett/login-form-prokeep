@@ -2,17 +2,45 @@ import React, { useState } from 'react';
 import { FaLock, FaUser } from "react-icons/fa";
 import './LoginForm.css';
 
+const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+
+const validateEmail = (email) => {
+  return emailRegex.test(email);
+};
+
 const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+
     const handleEmailChange = (e) => {
-        // handle validation
+        setEmailError("")
+        if ("" === email) {
+            setEmailError("Please enter your email")
+            return
+        }
+
+        if (!validateEmail(email)) {
+            setEmailError("Please enter a valid email")
+            return
+        }
+
         setEmail(e.target.value);
     };
 
     const handlePasswordChange = (e) => {
-        // handle validation
+        setPasswordError("")
+        if ("" === password) {
+            setPasswordError("Please enter a password")
+            return
+        }
+
+        if (password.length < 7) {
+            setPasswordError("The password must be 8 characters or longer")
+            return
+        }
         setPassword(e.target.value);
     };
 
@@ -33,7 +61,8 @@ const LoginForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(`Email: ${email} Password: ${password}`);
-        // add logic
+        
+        // submit to api
     };
 
     return (
@@ -47,12 +76,18 @@ const LoginForm = () => {
                         required/>
                     <FaUser className='icon' />
                 </div>
+                <div>
+                    <p className="error">{emailError}</p>
+                </div>
                 <div className='input-box'>
                     <input type="password"
                         placeholder='Password'
                         onChange={handlePasswordChange}
                         required/>
                     <FaLock className='icon' />
+                </div>
+                <div>
+                    <p className="error">{passwordError}</p>
                 </div>
 
                 <div className="remember-me">
