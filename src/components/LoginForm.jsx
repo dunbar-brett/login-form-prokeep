@@ -16,7 +16,8 @@ const LoginForm = () => {
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [loginError, setLoginError] = useState('');
-    const [loginSuccess, setLoginSuccess] = useState(false);
+    const [loginSuccess, setLoginSuccess] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleEmailChange = (e) => {
         let emailVal = e.target.value;
@@ -78,6 +79,7 @@ const LoginForm = () => {
 
         setLoginError('');
         setLoginSuccess('');
+        setLoading(true);
 
         fetch(reqresUrl, {
             method: 'POST',
@@ -97,10 +99,12 @@ const LoginForm = () => {
                 console.log('Success:', data);
                 setLoginSuccess(data.token)
             }
+            setLoading(false);
         })
         .catch(error => {
             console.log('Error:', error);
             setLoginError(error);
+            setLoading(false);
         });
     };
 
@@ -146,6 +150,7 @@ const LoginForm = () => {
             <div className='response-message'>
                 {loginSuccess && <p className='success'>Login Successful -- Token: {loginSuccess}</p>}
                 {loginError && <p className='error'>Login Error: {loginError}</p>}
+                {loading && <p className='loading'>Loading...</p>}
             </div>
         </div>
     );
