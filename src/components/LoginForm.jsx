@@ -79,7 +79,6 @@ const LoginForm = () => {
         setLoginError('');
         setLoginSuccess('');
 
-        // submit to api
         fetch(reqresUrl, {
             method: 'POST',
             body: JSON.stringify(payload),
@@ -87,24 +86,19 @@ const LoginForm = () => {
                 'Content-Type': 'application/json'
             }
         })
-        .then(response => response.json()) // Convert the response data to a JSON object
+        .then(response => response.json())
         .then(data => {
-            // Handle the JSON data returned from the server
-
-            // If the server returns an error message
             if (data.error) {
                 console.log('Error:', data.error);
                 setLoginError(data.error);
             }
 
-            // If the server returns a success message
             else {
                 console.log('Success:', data);
                 setLoginSuccess(data.token)
             }
         })
         .catch(error => {
-            // Handle the error
             console.log('Error:', error);
             setLoginError(error);
         });
