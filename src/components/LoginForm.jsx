@@ -110,7 +110,7 @@ const LoginForm = () => {
     return (
         <div className='wrapper'>
             <form onSubmit={handleSubmit}>
-                <h1>Login</h1>
+                <h1 data-testid='header'>Login</h1>
                 <div className='input-box'>
                     <input type='text'
                         placeholder='Email'
