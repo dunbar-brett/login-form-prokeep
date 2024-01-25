@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaLock, FaUser } from "react-icons/fa";
+import { FaLock, FaUser } from 'react-icons/fa';
 import './LoginForm.css';
 
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -16,32 +16,26 @@ const LoginForm = () => {
     const [passwordError, setPasswordError] = useState('');
 
     const handleEmailChange = (e) => {
-        setEmailError("")
-        if ("" === email) {
-            setEmailError("Please enter your email")
-            return
-        }
+        let emailVal = e.target.value;
+        setEmail(emailVal);
+        setEmailError('')
 
-        if (!validateEmail(email)) {
-            setEmailError("Please enter a valid email")
+        if (emailVal && !validateEmail(emailVal)) {
+            setEmailError('Please enter a valid email')
             return
-        }
-
-        setEmail(e.target.value);
+        }        
     };
 
     const handlePasswordChange = (e) => {
-        setPasswordError("")
-        if ("" === password) {
-            setPasswordError("Please enter a password")
-            return
-        }
+        let passwordVal = e.target.value;
+        setPassword(passwordVal);
+        setPasswordError('')
+        
 
-        if (password.length < 7) {
-            setPasswordError("The password must be 8 characters or longer")
+        if (passwordVal && passwordVal.length < 7) {
+            setPasswordError('The password must be 8 character or longer')
             return
         }
-        setPassword(e.target.value);
     };
 
     const handleRememberMeChange = (e) => {
@@ -61,6 +55,17 @@ const LoginForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(`Email: ${email} Password: ${password}`);
+        if (email.length === 0) {
+            setEmailError('Please enter your email')
+        }
+
+        if (password.length === 0) {
+            setPasswordError('Please enter a password')
+        }
+
+        if (emailError || passwordError) {
+            return
+        }
         
         // submit to api
     };
@@ -70,38 +75,36 @@ const LoginForm = () => {
             <form onSubmit={handleSubmit}>
                 <h1>Login</h1>
                 <div className='input-box'>
-                    <input type="text"
+                    <input type='text'
                         placeholder='Email'
-                        onChange={handleEmailChange}
-                        required/>
+                        onChange={handleEmailChange} />
                     <FaUser className='icon' />
                 </div>
-                <div>
-                    <p className="error">{emailError}</p>
+                <div className='error-box'>
+                    <p className='error'>{emailError}</p>
                 </div>
                 <div className='input-box'>
-                    <input type="password"
+                    <input type='password'
                         placeholder='Password'
-                        onChange={handlePasswordChange}
-                        required/>
+                        onChange={handlePasswordChange} />
                     <FaLock className='icon' />
                 </div>
-                <div>
-                    <p className="error">{passwordError}</p>
+                <div className='error-box'>
+                    <p className='error'>{passwordError}</p>
                 </div>
 
-                <div className="remember-me">
+                <div className='remember-me'>
                     <label>
-                        <input type="checkbox" onChange={handleRememberMeChange}/>
+                        <input type='checkbox' onChange={handleRememberMeChange}/>
                         Remember me
                     </label>
-                    <a href="#" onClick={handleForgotPasswordClick}>Forgot password?</a>
+                    <a href='#' onClick={handleForgotPasswordClick}>Forgot password?</a>
                 </div>
 
-                <button type="submit">Login</button>
+                <button type='submit'>Login</button>
 
-                <div className="register-link">
-                    <p>Don't have an account? <a href="#" onClick={handleRegisterClick}>Register</a></p>
+                <div className='register-link'>
+                    <p>Don't have an account? <a href='#' onClick={handleRegisterClick}>Register</a></p>
                 </div>
             </form>
         </div>

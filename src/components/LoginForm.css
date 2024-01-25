@@ -96,6 +96,11 @@
     transform: translateY(-50%);
 }
 
+.error-box {
+    margin-top: 4px;
+    min-height: 21px;
+}
+
 .error {
     color: red;
     font-size: 14px;
